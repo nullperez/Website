@@ -1,60 +1,63 @@
 import './style.css'
-import heroImg from './assets/hero.png'
-import javascriptLogo from './assets/javascript.svg'
-import viteLogo from './assets/vite.svg'
-import { setupCounter } from './counter.js'
 
-document.querySelector('#app').innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${javascriptLogo}" class="framework" alt="JavaScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.js</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+const root = document.documentElement
 
-<div class="ticks"></div>
+// ----- Theme toggle (remembers choice, otherwise follows the OS) -----
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)')
+const currentTheme = () => root.dataset.theme || (prefersDark.matches ? 'dark' : 'light')
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="${import.meta.env.BASE_URL}icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-          <img class="button-icon" src="${javascriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="${import.meta.env.BASE_URL}icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="${import.meta.env.BASE_URL}icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="${import.meta.env.BASE_URL}icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="${import.meta.env.BASE_URL}icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="${import.meta.env.BASE_URL}icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+document.querySelector('.theme-toggle').addEventListener('click', () => {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark'
+  root.dataset.theme = next
+  try {
+    localStorage.setItem('theme', next)
+  } catch {}
+})
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+// ----- Mobile menu -----
+const menuToggle = document.querySelector('.menu-toggle')
+const navLinks = document.querySelector('.nav-links')
 
-setupCounter(document.querySelector('#counter'))
+const setMenu = (open) => {
+  navLinks.classList.toggle('open', open)
+  menuToggle.setAttribute('aria-expanded', String(open))
+  menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+}
+
+menuToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')))
+navLinks.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)))
+
+// ----- Highlight the nav link for the section in view -----
+const links = new Map([...navLinks.querySelectorAll('a[href^="#"]')].map((a) => [a.hash.slice(1), a]))
+
+const navObserver = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
+      links.forEach((a) => a.classList.remove('active'))
+      links.get(entry.target.id)?.classList.add('active')
+    }
+  },
+  { rootMargin: '-45% 0px -50% 0px' },
+)
+document.querySelectorAll('main section[id]').forEach((s) => navObserver.observe(s))
+
+// ----- Fade sections in as they scroll into view -----
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+        revealObserver.unobserve(entry.target)
+      }
+    }
+  },
+  { threshold: 0.1 },
+)
+document.querySelectorAll('.section').forEach((s) => {
+  s.classList.add('reveal')
+  revealObserver.observe(s)
+})
+
+// ----- Footer year -----
+document.getElementById('year').textContent = new Date().getFullYear()
