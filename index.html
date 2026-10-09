@@ -50,7 +50,7 @@
         <p class="eyebrow">Hi, I'm</p>
         <h1>Giancarlo Perez.</h1>
         <!-- TODO: your one-line pitch -->
-        <p class="lead">I build things for the web and like turning ideas into working software.</p>
+        <p class="lead">I enjoy understanding how complex electronic systems work and developing practical solutions that bring hardware, electronics, and software together.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#projects">See my work</a>
           <a class="btn" href="#contact">Get in touch</a>
@@ -64,24 +64,23 @@
           <div class="about-text">
             <!-- TODO: replace with your story — who you are, what you do, what you're into -->
             <p>
-              I'm a developer based in <strong>[your city]</strong>. I enjoy building clean, fast
-              websites and tools that solve real problems.
+              I'm an embedded systems engineer with a background in IT/Networking and automotive with a Bachelor's Degree in Computer Engineering from the University of Texas at Arlington.
             </p>
             <p>
-              Right now I'm focused on <strong>[what you're working on or learning]</strong>.
-              Outside of code you'll find me <strong>[hobbies]</strong>.
+              Right now I'm focused on hardware hacking and reverse engineering automotive embedded devices.
+              Outside of code you'll find me playing video games, working on my car, and hanging out with friends
             </p>
           </div>
           <div class="skills">
             <h3>Things I work with</h3>
             <!-- TODO: edit your skills list -->
             <ul class="tags">
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-              <li>Git &amp; GitHub</li>
-              <li>Node.js</li>
-              <li>Vite</li>
+              <li>CAN</li>
+              <li>Python</li>
+              <li>C</li>
+              <li>Microcontrollers</li>
+              <li>Networking</li>
+              <li>Electronics</li>
             </ul>
           </div>
         </div>
@@ -93,28 +92,28 @@
         <!-- TODO: copy an <article class="card"> block for each project -->
         <div class="cards">
           <article class="card">
+            <h3>Gauge Cluster Test Bench</h3>
+            <p>Reverse-engineered an automotive gauge cluster and developed a closed-loop Python/ESP32 test bench with computer-vision feedback and agentic AI control.</p>
+            <ul class="tags tags-sm"><li>CAN</li><li>Python</li><li>ESP32</li></ul>
+            <div class="card-links">
+              <!-- <a href="#" target="_blank" rel="noopener">Live ↗</a>-->
+              <a href="https://github.com/nullperez/InfinitiQ50-RE" target="_blank" rel="noopener">Code ↗</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>HydraSense Fire Hydrant Monitoring System</h3>
+            <p>I collaborated to develop a prototype solution for a remote fire hydrant monitoring system using a TM4C123GH6PM microcontroller to collect valve, water-flow, and pressure data and transmit GPS-tagged MQTT telemetry over LTE to a web dashboard for live and historical monitoring.</p>
+            <ul class="tags tags-sm"><li>MCU</li><li>TCP/IP</li><li>C</li></ul>
+            <div class="card-links">
+              <a href="https://github.com/nullperez/HydraSense" target="_blank" rel="noopener">Code ↗</a>
+            </div>
+          </article>
+          <article class="card">
             <h3>nullperez.com</h3>
             <p>This website. Built with plain HTML, CSS and JavaScript on Vite, deployed automatically to GitHub Pages on every push.</p>
             <ul class="tags tags-sm"><li>HTML</li><li>CSS</li><li>GitHub Actions</li></ul>
             <div class="card-links">
               <a href="https://github.com/nullperez/Website" target="_blank" rel="noopener">Code ↗</a>
-            </div>
-          </article>
-          <article class="card">
-            <h3>Project two</h3>
-            <p>A short description of what it does, the problem it solves, and what you learned building it.</p>
-            <ul class="tags tags-sm"><li>Tech</li><li>Used</li></ul>
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener">Live ↗</a>
-              <a href="#" target="_blank" rel="noopener">Code ↗</a>
-            </div>
-          </article>
-          <article class="card">
-            <h3>Project three</h3>
-            <p>A short description of what it does, the problem it solves, and what you learned building it.</p>
-            <ul class="tags tags-sm"><li>Tech</li><li>Used</li></ul>
-            <div class="card-links">
-              <a href="#" target="_blank" rel="noopener">Code ↗</a>
             </div>
           </article>
         </div>
@@ -126,17 +125,17 @@
         <!-- TODO: jobs, school, certifications — newest first -->
         <ol class="timeline">
           <li>
-            <span class="when">2024 — Present</span>
+            <span class="when">2025 — Present</span>
             <div>
-              <h3>Role / Title <span class="at">· Company or School</span></h3>
-              <p>One or two lines on what you did and what you achieved.</p>
+              <h3>Test Equipment Engineer<span class="at">· Toyota North America</span></h3>
+              <p>Develop and maintain bench, in-vehicle, and mobile-app test environments for infotainment validation, while building Python-based CAN simulation and remote software-deployment tools that automate flashing, configuration, and troubleshooting.</p>
             </div>
           </li>
           <li>
-            <span class="when">2021 — 2024</span>
+            <span class="when">2023 — 2025</span>
             <div>
-              <h3>Role / Title <span class="at">· Company or School</span></h3>
-              <p>One or two lines on what you did and what you achieved.</p>
+              <h3>IT Technician<span class="at">· Six Flags Entertainment Corporation</span></h3>
+              <p>Provided end-user IT support for Windows, POS, networking, VoIP, printing, and A/V systems while managing device deployment, inventory, lifecycles, and warranties.</p>
             </div>
           </li>
         </ol>
@@ -147,9 +146,8 @@
       <!-- ===== Contact ===== -->
       <section class="section container contact" id="contact">
         <h2>Contact</h2>
-        <p class="lead">Have a question, an opportunity, or just want to say hi? My inbox is open.</p>
-        <!-- TODO: put the email address you want public here -->
-        <a class="btn btn-primary" href="mailto:hello@nullperez.com">Say hello</a>
+        <p class="lead">Have a question, an opportunity, or want to say hi? Feel free to contact me.</p>
+        <a class="btn btn-primary" href="mailto:giancarlo_perez@icloud.com">Email me!</a>
         <ul class="socials">
           <li>
             <a href="https://github.com/nullperez" target="_blank" rel="noopener" aria-label="GitHub">
@@ -157,8 +155,7 @@
             </a>
           </li>
           <li>
-            <!-- TODO: your LinkedIn URL (or delete this <li>) -->
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/giancarlo-perez" target="_blank" rel="noopener" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5V9h3zM6.5 7.7a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM19 19h-3v-4.9c0-1.2 0-2.7-1.6-2.7-1.7 0-1.9 1.3-1.9 2.6v5H9.4V9h2.9v1.4c.4-.8 1.4-1.6 2.9-1.6 3.1 0 3.7 2 3.7 4.7z"/></svg>
             </a>
           </li>
